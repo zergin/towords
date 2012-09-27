@@ -69,7 +69,7 @@ var toWords = (function () {
             throw new Error('Dictionary for this locale is not set');
         }
 
-        return dicts[this.locale].call(me, parseInt(this.number, 10));
+        return dicts[this.locale].call(me, this.number);
     };
 
     return toWordsClass;

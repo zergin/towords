@@ -33,7 +33,7 @@
 
     words.tens = [
         '', '', 'dwadzieścia', 'trzydzieści', 'czterdzieści', 'pięćdziesiąt', 'sześćdziesiąt', 'siedemdziesiąt',
-        'osiemdziesiąt', 'dziesięćdziesiąt'
+        'osiemdziesiąt', 'dziewięćdziesiąt'
     ];
 
     words.hundrets = [
@@ -88,17 +88,18 @@
 
     toWords.setDict(function toWordsDictionaryPL(number) {
         var s = 0, d = 0, j = 0, k = 0, g = 0,
-            result = '';
+            result = '', isLessThenZero = false;
 
         if (number === 0) {
             return 'zero';
         }
 
         if (number < 0) {
-            result += 'minus ';
+            isLessThenZero = true;
+            number = Math.abs(number);
         }
 
-        while (Math.abs(number) > 0) {
+        while (number > 0) {
 
             s = Math.floor((number % 1000)/100),
             d = Math.floor((number % 100)/10),
@@ -126,7 +127,7 @@
             number = Math.floor(number/1000);
         }
 
-        return result;
+        return (isLessThenZero ? 'minus ' : '') + result;
 
     }, 'pl');
 })();
